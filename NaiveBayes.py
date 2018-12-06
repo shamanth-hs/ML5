@@ -21,7 +21,6 @@ def splitDataset(dataset, splitRatio):
 	copy = list(dataset)
 	i=0
 	while len(trainSet) < trainSize:
-		#index = random.randrange(len(copy))
 		
 		trainSet.append(copy.pop(i))
 	return [trainSet, copy]
@@ -112,15 +111,14 @@ def main():
 	for x in testSet:
 		print(x)
 	print("\n")
-	# prepare model
+	
 	summaries = summarizeByClass(trainingSet)
-	# test model
+	
 	predictions = getPredictions(summaries, testSet)
 	actual = []
 	for i in range(len(testSet)):
 		vector = testSet[i]
 		actual.append(vector[-1])
-	# Since there are five attribute values, each attribute constitutes to 20% accuracy. So if all attributes match with predictions then 100% accuracy
 	print('Actual values: {0}%'.format(actual))	
 	print('Predictions: {0}%'.format(predictions))
 	accuracy = getAccuracy(testSet, predictions)
